@@ -600,3 +600,298 @@ a.card:hover {
     transition: none !important;
   }
 }
+
+/* ─── Instructor & trainee hub ─────────────────────────────────────── */
+.instructor {
+  margin-top: -32px;
+}
+.subnav {
+  background: var(--sage-deep);
+}
+.subnav .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+.subnav-label {
+  color: #f6e4da;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-right: 12px;
+}
+.subnav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+}
+.subnav a:hover,
+.subnav a[aria-current="page"] {
+  background: rgba(255, 255, 255, 0.16);
+}
+.instructor-hero {
+  background: linear-gradient(135deg, #dfe7e0, #ece3d6);
+}
+.nav a.nav-instructor {
+  border: 1px solid var(--sage-deep);
+  color: var(--sage-deep);
+}
+
+.small {
+  font-size: 0.85rem;
+}
+.small-link {
+  font-size: 0.85rem;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+.two-col .notice {
+  margin: 0;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  font-size: 0.95rem;
+}
+.table th,
+.table td {
+  text-align: left;
+  vertical-align: top;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+}
+.table thead th {
+  background: var(--surface-alt);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+.table tbody tr:last-child td {
+  border-bottom: none;
+}
+.plan-table {
+  margin-top: 24px;
+}
+.plan-table .plan-block th {
+  background: var(--sage-tint);
+  color: var(--sage-deep);
+  font-family: var(--font-serif);
+  font-size: 1rem;
+}
+@media (max-width: 640px) {
+  .table {
+    display: block;
+    overflow-x: auto;
+  }
+}
+
+.cue-list dt {
+  font-weight: 700;
+  color: var(--sage-deep);
+  margin-top: 12px;
+}
+.cue-list dd {
+  margin: 4px 0 0;
+}
+.cue-list ol {
+  margin: 0;
+  padding-left: 20px;
+}
+.red-flags {
+  border-left: 4px solid #b5482f;
+}
+.notice.pass {
+  background: var(--sage-tint);
+}
+
+.link-btn {
+  background: none;
+  border: none;
+  padding: 4px 6px;
+  color: var(--sage-deep);
+  cursor: pointer;
+  font-size: 0.85rem;
+  text-decoration: underline;
+}
+.link-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+.danger,
+.btn.ghost.danger {
+  color: #a3402a;
+}
+
+/* Planner & forms */
+.planner-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px;
+  margin: 16px 0 24px;
+}
+.planner-bar label,
+.field,
+.filters label {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+.planner-bar select,
+.field input,
+.field select,
+.field textarea,
+.filters input,
+.plan-item input,
+.plan-item textarea {
+  font: inherit;
+  font-size: 1rem;
+  color: var(--ink);
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  min-height: 44px;
+  width: 100%;
+}
+.planner-bar select {
+  min-width: 220px;
+}
+.plan-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+.field.wide {
+  grid-column: 1 / -1;
+}
+.plan-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: item;
+}
+.plan-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 14px;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.plan-item-main {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.plan-item .plan-name {
+  font-weight: 600;
+  flex: 1;
+}
+.plan-item .minutes {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+.plan-item .minutes input {
+  width: 80px;
+}
+.plan-item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.hours-form {
+  gap: 16px;
+}
+
+/* Quiz */
+.choices.stacked {
+  flex-direction: column;
+  align-items: stretch;
+}
+.choices.stacked .choice span {
+  width: 100%;
+  border-radius: 12px;
+}
+.choice.correct span {
+  border-color: var(--sage-deep);
+  background: var(--sage-tint);
+}
+.choice.wrong span {
+  border-color: #a3402a;
+  background: var(--clay-tint);
+}
+.explanation {
+  margin-top: 10px;
+  font-size: 0.95rem;
+}
+.explanation.ok {
+  color: var(--sage-deep);
+}
+.explanation.miss {
+  color: #8a4b30;
+}
+
+@media print {
+  .site-header,
+  .site-footer,
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+    font-size: 12pt;
+  }
+  main {
+    padding: 0;
+  }
+  .instructor {
+    margin: 0;
+  }
+  .card,
+  .plan-item,
+  .table {
+    box-shadow: none;
+  }
+  .plan-item input,
+  .plan-item textarea,
+  .field input,
+  .field textarea {
+    border: none;
+    padding: 0;
+    min-height: 0;
+    resize: none;
+  }
+}

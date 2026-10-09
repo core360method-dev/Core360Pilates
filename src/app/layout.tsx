@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import Link from "next/link";
 import { SiteHeader } from "@/components/SiteHeader";
 import "./globals.css";
 
@@ -24,6 +25,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <footer className="site-footer">
           <div className="container">
             <p className="tagline">Core 360 Method™ — Movement for Real Life.</p>
+            <p>
+              Instructor or teacher trainee? Visit the{" "}
+              <Link href="/instructor">Instructor &amp; Trainee Hub</Link>.
+            </p>
             <p>
               Movement isn&apos;t about achieving perfection. It&apos;s about building strength,
               confidence, connection, and the freedom to participate more fully in life.

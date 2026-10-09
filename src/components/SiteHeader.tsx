@@ -9,6 +9,7 @@ const links = [
   { href: "/sessions", label: "All Sessions" },
   { href: "/learn", label: "Learn" },
   { href: "/my-practice", label: "My Practice" },
+  { href: "/instructor", label: "For Instructors", className: "nav-instructor" },
 ];
 
 export function SiteHeader() {
@@ -25,6 +26,7 @@ export function SiteHeader() {
             <Link
               key={link.href}
               href={link.href}
+              className={link.className}
               aria-current={pathname.startsWith(link.href) ? "page" : undefined}
             >
               {link.label}

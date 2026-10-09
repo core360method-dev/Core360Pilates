@@ -11,6 +11,18 @@ A personalized Pilates & wellness web app. Users choose accessible 15–20 minut
 - **Learn** (`/learn`): *What Can Pilates Help Me With That I Didn't Know I Needed?* and *Questions People Are Afraid to Ask*, with related sessions.
 - **My Practice** (`/my-practice`): saved sessions, history, streak, total minutes, and the share of sessions you felt better after. Stored in the browser (no account needed).
 
+## Instructor & Trainee Hub (`/instructor`)
+
+A section for Core 360 instructors and teacher trainees, built on the same session content:
+
+- **Exercise Library**: teaching notes for each foundational exercise, covering set up, breath/movement/imagery cues, common faults and corrections, regressions and progressions, precautions for each population, and the real-life link. You can search and filter by category or population.
+- **Population Guides**: breast cancer recovery, osteoporosis, low back pain, shoulder limitations, and active aging. Each guide covers goals, what to favor and what to modify or avoid, red flags that need referral, and teaching tips.
+- **Teach a Session**: every client session as a printable, timed teaching plan with pre-class screening and links to teaching notes.
+- **Class Planner**: build plans from the library or from a Core 360 session, then reorder, time, annotate, save and print them (saved on this device).
+- **Trainee Center**: teaching principles, the cueing framework (Set up → Breathe → Move → Refine), cue types, client screening, scope of practice, a training-hours log with CSV export, and a self-check quiz.
+
+Instructor content lives in `src/data/instructor/`. Library exercises link to client sessions through their `aliases`, and the tests check that every alias matches an exercise name used in a session.
+
 ## Development
 
 ```bash

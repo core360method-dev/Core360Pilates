@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback, useSyncExternalStore } from "react";
+import { useCallback } from "react";
+import { createLocalStore } from "./localStore";
 
 export interface CompletedSession {
   sessionId: string;
@@ -14,76 +15,42 @@ export interface PracticeState {
   history: CompletedSession[];
 }
 
-const STORAGE_KEY = "core360.practice.v1";
-const EMPTY: PracticeState = { favorites: [], history: [] };
-
-const listeners = new Set<() => void>();
-let cache: PracticeState | null = null;
-
-function read(): PracticeState {
-  if (cache) return cache;
-  try {
-    const raw = window.localStorage.getItem(STORAGE_KEY);
-    const parsed = raw ? (JSON.parse(raw) as Partial<PracticeState>) : {};
-    cache = {
+const store = createLocalStore<PracticeState>(
+  "core360.practice.v1",
+  { favorites: [], history: [] },
+  (raw) => {
+    const parsed = (raw ?? {}) as Partial<PracticeState>;
+    return {
       favorites: Array.isArray(parsed.favorites) ? parsed.favorites : [],
       history: Array.isArray(parsed.history) ? parsed.history : [],
     };
-  } catch {
-    cache = EMPTY;
-  }
-  return cache;
-}
-
-function write(next: PracticeState) {
-  cache = next;
-  try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
-  } catch {
-    // Storage may be unavailable (private mode); keep the in-memory copy.
-  }
-  listeners.forEach((l) => l());
-}
-
-function subscribe(listener: () => void) {
-  listeners.add(listener);
-  const onStorage = (e: StorageEvent) => {
-    if (e.key === STORAGE_KEY) {
-      cache = null;
-      listener();
-    }
-  };
-  window.addEventListener("storage", onStorage);
-  return () => {
-    listeners.delete(listener);
-    window.removeEventListener("storage", onStorage);
-  };
-}
+  },
+);
 
 /** Saved favorites and completed sessions, persisted in this browser. */
 export function usePractice() {
-  const state = useSyncExternalStore(subscribe, read, () => EMPTY);
+  const state = store.use();
 
   const toggleFavorite = useCallback((sessionId: string) => {
-    const current = read();
+    const current = store.get();
     const favorites = current.favorites.includes(sessionId)
       ? current.favorites.filter((id) => id !== sessionId)
       : [...current.favorites, sessionId];
-    write({ ...current, favorites });
+    store.set({ ...current, favorites });
   }, []);
 
   const logCompletion = useCallback((sessionId: string, feelAfter: number | null) => {
-    const current = read();
+    const current = store.get();
     const entry: CompletedSession = {
       sessionId,
       completedAt: new Date().toISOString(),
       feelAfter,
     };
-    write({ ...current, history: [entry, ...current.history] });
+    store.set({ ...current, history: [entry, ...current.history] });
   }, []);
 
   const clearHistory = useCallback(() => {
-    write({ ...read(), history: [] });
+    store.set({ ...store.get(), history: [] });
   }, []);
 
   return { ...state, toggleFavorite, logCompletion, clearHistory };
